@@ -1,6 +1,7 @@
 {
   "main": "lib/index.js",
   "version": "2.2.1",
+  "type": "module",
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "release-it": "yarn version --patch && git push --follow-tags"

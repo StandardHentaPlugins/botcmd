@@ -1,5 +1,5 @@
-import loadDefaultTypes from './defaultTypes';
-import BotcmdPlugin from './index';
+import loadDefaultTypes from './defaultTypes.js';
+import BotcmdPlugin from './index.js';
 
 export default class ArgumentParser {
   botcmdPlugin: BotcmdPlugin;
@@ -38,7 +38,7 @@ export default class ArgumentParser {
           break;
         }
 
-        return [true, [
+        return [true, ctx.command.usage || [
           '⚪ Используйте:',
           `>> ${commandName} ${Object.values(argList).map(v => (v.optional ? `[${v.name}]` : `<${v.name}>`)).join(' ')}`
         ]];

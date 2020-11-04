@@ -1,4 +1,4 @@
-import BotcmdPlugin from './index';
+import BotcmdPlugin from './index.js';
 import readdirp from 'readdirp';
 import path from 'path';
 
@@ -30,7 +30,7 @@ export default class CommandLoader {
     script.runInThisContext();
     */
     try {
-      const commandModule = await import(compiledFilePath);
+      const commandModule = await import(`file:///${compiledFilePath}`);
       const CommandClass = commandModule.default || commandModule;
       const command = new CommandClass();
 

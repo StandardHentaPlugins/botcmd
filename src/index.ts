@@ -1,8 +1,8 @@
 import Emittery from 'emittery';
-import CommandLoader from './commandLoader';
-import ArgumentParser from './argumentParser';
-import AttachmentParser from './attachmentParser';
-import RequirementsParser from './requirementsParser';
+import CommandLoader from './commandLoader.js';
+import ArgumentParser from './argumentParser.js';
+import AttachmentParser from './attachmentParser.js';
+import RequirementsParser from './requirementsParser.js';
 
 export default class BotcmdPlugin {
   commandLoader = new CommandLoader(this);
@@ -95,7 +95,12 @@ export default class BotcmdPlugin {
       );
 
       if (error) {
-        ctx.answer(res);
+        if (typeof res === 'function') {
+          await res(ctx);
+        } else {
+          ctx.answer(res);
+        }
+
         return next();
       }
 
@@ -116,7 +121,7 @@ export default class BotcmdPlugin {
       const [error, res] = await this.requirementsParser.parse(ctx);
       if (error) {
         if (typeof res === 'function') {
-          res(ctx);
+          await res(ctx);
         } else {
           ctx.answer(res);
         }

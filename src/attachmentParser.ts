@@ -1,4 +1,4 @@
-import BotcmdPlugin from './index';
+import BotcmdPlugin from './index.js';
 
 export default class AttachmentParser {
   botcmdPlugin: BotcmdPlugin;
